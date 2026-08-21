@@ -30,7 +30,60 @@
       <span>Connection</span><span class="arrow">→</span>
       <span>Opportunity</span>
     </div>
-    <button class="btn-primary btn-lg" id="btn-start">ابدأ تحليل مسيرتك</button>
+    <div class="landing-actions">
+      <button class="btn-primary btn-lg" id="btn-start">إنشاء حساب جديد</button>
+      <button class="btn-ghost btn-lg" id="btn-goto-login">لدي حساب بالفعل - تسجيل الدخول</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ شاشة إنشاء حساب ============ -->
+<section id="view-signup" class="view">
+  <div class="auth-wrap">
+    <div class="landing-brand center"><span class="brand-mark">↗</span><span class="brand-name">اتجاهك</span></div>
+    <div class="card auth-card">
+      <h2 class="auth-title">إنشاء حساب جديد</h2>
+      <p class="muted">سجّلي حسابك لحفظ تحليلك والرجوع إليه في أي وقت.</p>
+      <form id="signup-form">
+        <label>الاسم الكامل
+          <input type="text" id="su-name" required>
+        </label>
+        <label>البريد الإلكتروني
+          <input type="email" id="su-email" required>
+        </label>
+        <label>التخصص (اختياري)
+          <input type="text" id="su-major">
+        </label>
+        <label>كلمة المرور (6 أحرف على الأقل)
+          <input type="password" id="su-password" minlength="6" required>
+        </label>
+        <div id="signup-error" class="form-error"></div>
+        <button type="submit" class="btn-primary btn-lg btn-block">إنشاء الحساب</button>
+      </form>
+      <p class="switch-auth">عندك حساب؟ <a href="#" id="link-goto-login">سجّلي الدخول</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ شاشة تسجيل الدخول ============ -->
+<section id="view-login" class="view">
+  <div class="auth-wrap">
+    <div class="landing-brand center"><span class="brand-mark">↗</span><span class="brand-name">اتجاهك</span></div>
+    <div class="card auth-card">
+      <h2 class="auth-title">تسجيل الدخول</h2>
+      <p class="muted">مرحبًا بعودتك 👋</p>
+      <form id="login-form">
+        <label>البريد الإلكتروني
+          <input type="email" id="li-email" required>
+        </label>
+        <label>كلمة المرور
+          <input type="password" id="li-password" required>
+        </label>
+        <div id="login-error" class="form-error"></div>
+        <button type="submit" class="btn-primary btn-lg btn-block">دخول</button>
+      </form>
+      <p class="switch-auth">ما عندك حساب؟ <a href="#" id="link-goto-signup">أنشئي واحدًا</a></p>
+    </div>
   </div>
 </section>
 
@@ -44,18 +97,6 @@
     </div>
 
     <form id="profile-form">
-      <div class="card">
-        <h3 class="section-title">👤 الملف الشخصي</h3>
-        <div class="grid-2">
-          <label>الاسم
-            <input type="text" id="f-name" placeholder="مثال: أحمد" required>
-          </label>
-          <label>التخصص
-            <input type="text" id="f-major" placeholder="مثال: علوم حاسب">
-          </label>
-        </div>
-      </div>
-
       <div class="card">
         <h3 class="section-title">🎯 الهدف</h3>
         <label>اختر الفرصة/الهدف الذي تريد الوصول إليه
@@ -111,6 +152,7 @@
         <a href="#" class="nav-item" data-section="opportunities">🚀 الفرص</a>
       </nav>
       <button class="btn-ghost btn-block" id="btn-restart">↺ تحليل جديد</button>
+      <button class="btn-ghost btn-block" id="btn-logout">🚪 تسجيل الخروج</button>
     </aside>
 
     <main class="main-content">
@@ -217,7 +259,7 @@
     <button type="button" class="btn-remove" title="حذف">✕</button>
   </div>
 </template>
-\
+
 <script src="config.js"></script>
 <script src="app.js"></script>
 </body>
