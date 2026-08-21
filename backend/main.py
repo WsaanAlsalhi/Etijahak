@@ -32,11 +32,10 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="اتجاهك - Etijahak API", version="2.0.0")
 
-# CORS — عدّلي allow_origins في الإنتاج لتحديد نطاق الفرونت إند فقط بدل "*"
-FRONTEND_ORIGINS = os.environ.get("FRONTEND_ORIGINS", "*")
+# CORS — مضبوطة الآن على "اسمح للكل" بشكل صريح ومباشر لضمان عملها 100%
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if FRONTEND_ORIGINS == "*" else FRONTEND_ORIGINS.split(","),
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -70,7 +69,6 @@ def signup(payload: SignupRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
 
-    # ننشئ سجل ملف شخصي فارغ لهذا المستخدم
     profile = ProfileData(user_id=user.id, skills=[], projects=[], experiences=[], certificates=[])
     db.add(profile)
     db.commit()
@@ -101,7 +99,7 @@ def get_goals():
     return [{"key": k, "name_ar": v["name_ar"]} for k, v in GOALS.items()]
 
 
-# ==================== Profile (لجلب آخر بيانات محفوظة عند تسجيل الدخول) ====================
+# ==================== Profile ====================
 
 @app.get("/profile")
 def get_profile(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
@@ -117,7 +115,7 @@ def get_profile(current_user: User = Depends(get_current_user), db: Session = De
     }
 
 
-# ==================== Analyze (محمي بتسجيل الدخول، ويحفظ في قاعدة البيانات) ====================
+# ==================== Analyze ====================
 
 @app.post("/analyze", response_model=AnalyzeResponse)
 def analyze(
@@ -147,7 +145,6 @@ def analyze(
     else:
         overall_readiness = 0
 
-    # حفظ دائم في قاعدة البيانات (بدل ذاكرة مؤقتة) — مرتبط بالمستخدم المسجّل دخوله
     profile_row = db.query(ProfileData).filter(ProfileData.user_id == current_user.id).first()
     if not profile_row:
         profile_row = ProfileData(user_id=current_user.id)
@@ -171,7 +168,7 @@ def analyze(
     )
 
 
-# ==================== Opportunities (محمي، يعتمد على آخر تحليل محفوظ للمستخدم) ====================
+# ==================== Opportunities ====================
 
 @app.get("/opportunities")
 def get_opportunities(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
