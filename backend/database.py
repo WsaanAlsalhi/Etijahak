@@ -11,7 +11,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./etijahak.db")
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:San%4019288364@db.xwecvibcanvxcasvesvq.supabase.co:5432/postgres")
 
 # Railway/Render أحيانًا تعطي رابط يبدأ بـ postgres:// بدل postgresql://
 # و SQLAlchemy الحديث يحتاج postgresql://
