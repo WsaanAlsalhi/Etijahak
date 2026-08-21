@@ -70,6 +70,22 @@ a{text-decoration:none;color:inherit;}
 .landing-flow span{padding:6px 12px; background:var(--white); border-radius:999px; box-shadow:var(--shadow);}
 .landing-flow .arrow{background:transparent; box-shadow:none; color:var(--sand); padding:0;}
 
+.landing-actions{display:flex; flex-direction:column; gap:10px; align-items:center;}
+.landing-actions .btn-ghost{background:transparent; border:none; color:var(--blue); font-weight:600;}
+.landing-actions .btn-ghost:hover{text-decoration:underline;}
+
+.auth-wrap{
+  max-width:440px; margin:0 auto; min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px;
+}
+.landing-brand.center{justify-content:center; margin-bottom:24px;}
+.auth-card{width:100%;}
+.auth-title{color:var(--navy); font-size:22px; margin:0 0 4px;}
+.auth-card form{display:flex; flex-direction:column; gap:14px; margin-top:18px;}
+.form-error{color:var(--danger); font-size:13px; min-height:16px;}
+.switch-auth{text-align:center; font-size:13px; color:var(--text-muted); margin-top:16px;}
+.switch-auth a{color:var(--blue); font-weight:600;}
+
 .onboarding-wrap{max-width:760px; margin:0 auto; padding:48px 24px 80px;}
 .onboarding-header{text-align:center; margin-bottom:32px;}
 .onboarding-header h2{color:var(--navy); font-size:24px; margin:14px 0 6px;}
@@ -83,11 +99,11 @@ a{text-decoration:none;color:inherit;}
 .section-header-row .section-title{margin:0;}
 
 label{display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--text-muted); font-weight:600;}
-input[type="text"], select{
+input[type="text"], input[type="email"], input[type="password"], select{
   font-family:inherit; padding:10px 12px; border-radius:9px; border:1.5px solid #E1E4EA;
   font-size:14px; color:var(--text-dark); background:#FBFBFC;
 }
-input[type="text"]:focus, select:focus{outline:none; border-color:var(--blue);}
+input:focus, select:focus{outline:none; border-color:var(--blue);}
 .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
 
 .repeat-list{display:flex; flex-direction:column; gap:10px;}
