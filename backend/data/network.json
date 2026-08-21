@@ -1,0 +1,7 @@
+[
+  {"id": "n1", "name_ar": "د. سارة العتيبي", "role_ar": "باحثة في الرؤية الحاسوبية", "type": "researcher", "icon": "👩‍🔬", "tags": ["computer_vision", "ai", "research"]},
+  {"id": "n2", "name_ar": "د. محمد الشهري", "role_ar": "أستاذ في تعلم الآلة", "type": "mentor", "icon": "👨‍🏫", "tags": ["machine_learning", "research", "statistics"]},
+  {"id": "n3", "name_ar": "مطور الذكاء الاصطناعي", "role_ar": "مهندس AI في شركة تقنية", "type": "collaborator", "icon": "🧑‍💻", "tags": ["python", "ai", "software_engineering"]},
+  {"id": "n4", "name_ar": "خبيرة ريادة أعمال", "role_ar": "مؤسسة ومستشارة منتجات", "type": "mentor", "icon": "👩‍💼", "tags": ["product_thinking", "leadership", "communication"]},
+  {"id": "n5", "name_ar": "باحث بيانات كبير", "role_ar": "Data Scientist في مؤسسة بحثية", "type": "researcher", "icon": "📈", "tags": ["data_analysis", "statistics", "machine_learning"]}
+]

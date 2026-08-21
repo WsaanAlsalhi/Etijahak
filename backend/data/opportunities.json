@@ -1,0 +1,9 @@
+[
+  {"id": "op1", "name_ar": "AI Research Internship - AI Lab", "type": "Internship", "icon": "🔬", "required_skills": {"python": 0.8, "ai": 0.85, "machine_learning": 0.8, "research": 0.8}},
+  {"id": "op2", "name_ar": "Computer Vision Hackathon", "type": "Hackathon", "icon": "🏆", "required_skills": {"python": 0.6, "computer_vision": 0.8, "opencv": 0.6}},
+  {"id": "op3", "name_ar": "Robotics Program", "type": "Program", "icon": "🤖", "required_skills": {"python": 0.6, "hardware": 0.7, "machine_learning": 0.5}},
+  {"id": "op4", "name_ar": "AI Fellowship", "type": "Fellowship", "icon": "🎓", "required_skills": {"research": 0.8, "ai": 0.7, "technical_writing": 0.7}},
+  {"id": "op5", "name_ar": "Software Engineering Internship", "type": "Internship", "icon": "💻", "required_skills": {"python": 0.7, "software_engineering": 0.8, "databases": 0.6, "apis": 0.6}},
+  {"id": "op6", "name_ar": "Data Science Summer Camp", "type": "Program", "icon": "📊", "required_skills": {"python": 0.7, "statistics": 0.8, "data_analysis": 0.8}},
+  {"id": "op7", "name_ar": "Startup Accelerator Track", "type": "Accelerator", "icon": "🚀", "required_skills": {"product_thinking": 0.7, "communication": 0.7, "leadership": 0.6}}
+]
