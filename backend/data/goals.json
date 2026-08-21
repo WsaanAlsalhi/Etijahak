@@ -1,0 +1,66 @@
+{
+  "ai_research_internship": {
+    "name_ar": "باحث في الذكاء الاصطناعي (Research Internship)",
+    "required_skills": {
+      "python": 0.9,
+      "ai": 0.85,
+      "machine_learning": 0.85,
+      "computer_vision": 0.6,
+      "research": 0.9,
+      "technical_writing": 0.75,
+      "statistics": 0.5
+    },
+    "required_evidence": ["research_experience", "technical_writing", "research_evidence"],
+    "required_network": ["academic_network"]
+  },
+  "computer_vision_engineer": {
+    "name_ar": "مهندس رؤية حاسوبية (Computer Vision Engineer)",
+    "required_skills": {
+      "python": 0.85,
+      "computer_vision": 0.9,
+      "machine_learning": 0.7,
+      "opencv": 0.7,
+      "deep_learning": 0.75,
+      "software_engineering": 0.6
+    },
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "backend_developer": {
+    "name_ar": "مطور Backend",
+    "required_skills": {
+      "python": 0.8,
+      "software_engineering": 0.8,
+      "databases": 0.75,
+      "apis": 0.8,
+      "system_design": 0.6
+    },
+    "required_evidence": ["deployed_project", "github_projects"],
+    "required_network": ["industry_network"]
+  },
+  "data_science_fellowship": {
+    "name_ar": "زمالة علم البيانات (Data Science Fellowship)",
+    "required_skills": {
+      "python": 0.85,
+      "statistics": 0.85,
+      "machine_learning": 0.8,
+      "data_analysis": 0.85,
+      "research": 0.6,
+      "technical_writing": 0.6
+    },
+    "required_evidence": ["portfolio", "research_evidence"],
+    "required_network": ["academic_network"]
+  },
+  "startup_product_track": {
+    "name_ar": "مسار ريادة أعمال / منتجات تقنية",
+    "required_skills": {
+      "product_thinking": 0.8,
+      "software_engineering": 0.5,
+      "communication": 0.75,
+      "market_research": 0.7,
+      "leadership": 0.6
+    },
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["mentor_network", "industry_network"]
+  }
+}
