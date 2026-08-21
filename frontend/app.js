@@ -1,33 +1,164 @@
-// اتجاهك — Frontend Logic
-// إذا شغّلتِ الـ Backend على منفذ مختلف، عدّلي API_BASE فقط.
-const API_BASE = "http://127.0.0.1:8000";
+// ============================================================
+// اتجاهك — Frontend Logic (نسخة الإنتاج: تسجيل دخول + قاعدة بيانات)
+// ============================================================
+const API_BASE = window.ETIJAHAK_API_BASE || "http://127.0.0.1:8000";
+const TOKEN_KEY = "etijahak_token";
+
+function getToken() { return localStorage.getItem(TOKEN_KEY); }
+function setToken(t) { localStorage.setItem(TOKEN_KEY, t); }
+function clearToken() { localStorage.removeItem(TOKEN_KEY); }
+
+function authHeaders() {
+  const token = getToken();
+  return token ? { "Authorization": "Bearer " + token } : {};
+}
 
 function showView(id) {
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-document.getElementById("btn-start").addEventListener("click", () => {
-  showView("view-onboarding");
-  loadGoals();
+document.getElementById("btn-start").addEventListener("click", () => showView("view-signup"));
+document.getElementById("btn-goto-login").addEventListener("click", () => showView("view-login"));
+document.getElementById("link-goto-login").addEventListener("click", (e) => { e.preventDefault(); showView("view-login"); });
+document.getElementById("link-goto-signup").addEventListener("click", (e) => { e.preventDefault(); showView("view-signup"); });
+
+document.getElementById("signup-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const errBox = document.getElementById("signup-error");
+  errBox.textContent = "";
+
+  const body = {
+    name: document.getElementById("su-name").value.trim(),
+    email: document.getElementById("su-email").value.trim(),
+    major: document.getElementById("su-major").value.trim(),
+    password: document.getElementById("su-password").value,
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "فشل إنشاء الحساب");
+
+    setToken(data.access_token);
+    await afterAuthSuccess(data.user_name);
+  } catch (err) {
+    errBox.textContent = err.message;
+  }
 });
 
-document.getElementById("btn-restart").addEventListener("click", () => {
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const errBox = document.getElementById("login-error");
+  errBox.textContent = "";
+
+  const body = {
+    email: document.getElementById("li-email").value.trim(),
+    password: document.getElementById("li-password").value,
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "فشل تسجيل الدخول");
+
+    setToken(data.access_token);
+    await afterAuthSuccess(data.user_name);
+  } catch (err) {
+    errBox.textContent = err.message;
+  }
+});
+
+document.getElementById("btn-logout").addEventListener("click", () => {
+  clearToken();
   showView("view-landing");
 });
 
+document.getElementById("btn-restart").addEventListener("click", () => {
+  showView("view-onboarding");
+});
+
+async function afterAuthSuccess(userName) {
+  document.getElementById("user-name-badge").textContent = userName || "مستخدم";
+  await loadGoals();
+  await prefillSavedProfile();
+  showView("view-onboarding");
+}
+
+(async function tryAutoLogin() {
+  const token = getToken();
+  if (!token) return;
+  try {
+    const res = await fetch(`${API_BASE}/auth/me`, { headers: authHeaders() });
+    if (!res.ok) { clearToken(); return; }
+    const user = await res.json();
+    await afterAuthSuccess(user.name);
+  } catch (err) {
+    console.warn("Auto-login failed:", err);
+  }
+})();
+
 async function loadGoals() {
   const select = document.getElementById("f-goal");
-  if (select.dataset.loaded === "1") return;
   select.innerHTML = `<option value="">جارِ التحميل...</option>`;
   try {
     const res = await fetch(`${API_BASE}/goals`);
     const goals = await res.json();
     select.innerHTML = goals.map(g => `<option value="${g.key}">${g.name_ar}</option>`).join("");
-    select.dataset.loaded = "1";
   } catch (err) {
-    select.innerHTML = `<option value="">تعذّر الاتصال بالخادم — تأكدي أن الـBackend يعمل</option>`;
+    select.innerHTML = `<option value="">تعذّر الاتصال بالخادم</option>`;
     console.error(err);
+  }
+}
+
+async function prefillSavedProfile() {
+  try {
+    const res = await fetch(`${API_BASE}/profile`, { headers: authHeaders() });
+    if (!res.ok) return;
+    const data = await res.json();
+
+    document.getElementById("skills-list").innerHTML = "";
+    document.getElementById("projects-list").innerHTML = "";
+    document.getElementById("certificates-list").innerHTML = "";
+
+    (data.skills || []).forEach(s => {
+      addRepeatItem("skill");
+      const row = document.getElementById("skills-list").lastElementChild;
+      row.querySelector(".skill-name").value = s.name;
+      row.querySelector(".skill-level").value = s.level;
+    });
+    (data.projects || []).forEach(p => {
+      addRepeatItem("project");
+      const row = document.getElementById("projects-list").lastElementChild;
+      row.querySelector(".project-title").value = p.title;
+      row.querySelector(".project-tags").value = (p.tags || []).join(", ");
+      row.querySelector(".project-repo").checked = !!p.has_repo;
+    });
+    (data.certificates || []).forEach(c => {
+      addRepeatItem("certificate");
+      const row = document.getElementById("certificates-list").lastElementChild;
+      row.querySelector(".cert-title").value = c.title;
+      row.querySelector(".cert-tags").value = (c.tags || []).join(", ");
+    });
+
+    if (data.last_goal_key) {
+      document.getElementById("f-goal").value = data.last_goal_key;
+    }
+
+    if (!data.skills || data.skills.length === 0) addRepeatItem("skill");
+    if (!data.projects || data.projects.length === 0) addRepeatItem("project");
+  } catch (err) {
+    console.warn("تعذّر تحميل الملف المحفوظ:", err);
+    addRepeatItem("skill");
+    addRepeatItem("project");
   }
 }
 
@@ -51,16 +182,11 @@ document.querySelectorAll("[data-add]").forEach(btn => {
   btn.addEventListener("click", () => addRepeatItem(btn.dataset.add));
 });
 
-["skill", "project"].forEach(addRepeatItem);
-
 function parseTags(value) {
   return value.split(",").map(t => t.trim().toLowerCase().replace(/\s+/g, "_")).filter(Boolean);
 }
 
 function collectProfile() {
-  const name = document.getElementById("f-name").value.trim();
-  const major = document.getElementById("f-major").value.trim();
-
   const skills = Array.from(document.querySelectorAll("#skills-list .repeat-item")).map(row => ({
     name: row.querySelector(".skill-name").value.trim().toLowerCase().replace(/\s+/g, "_"),
     level: parseInt(row.querySelector(".skill-level").value, 10),
@@ -77,7 +203,7 @@ function collectProfile() {
     tags: parseTags(row.querySelector(".cert-tags").value),
   })).filter(c => c.title);
 
-  return { name, major, skills, projects, experiences: [], certificates };
+  return { name: document.getElementById("user-name-badge").textContent, skills, projects, experiences: [], certificates };
 }
 
 document.getElementById("profile-form").addEventListener("submit", async (e) => {
@@ -92,19 +218,23 @@ document.getElementById("profile-form").addEventListener("submit", async (e) => 
   try {
     const analyzeRes = await fetch(`${API_BASE}/analyze`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...authHeaders() },
       body: JSON.stringify({ profile, goal_key: goalKey }),
     });
-    if (!analyzeRes.ok) throw new Error("فشل التحليل: " + analyzeRes.status);
+    if (analyzeRes.status === 401) { clearToken(); showView("view-login"); throw new Error("انتهت الجلسة، سجّلي الدخول مجددًا"); }
+    if (!analyzeRes.ok) {
+      const errData = await analyzeRes.json().catch(() => ({}));
+      throw new Error(errData.detail || ("فشل التحليل: " + analyzeRes.status));
+    }
     const analysis = await analyzeRes.json();
 
-    const oppRes = await fetch(`${API_BASE}/opportunities`);
+    const oppRes = await fetch(`${API_BASE}/opportunities`, { headers: authHeaders() });
     const opportunities = oppRes.ok ? await oppRes.json() : [];
 
     renderDashboard(profile, analysis, opportunities);
     showView("view-dashboard");
   } catch (err) {
-    alert("حدث خطأ في الاتصال بالخادم. تأكدي أن الـBackend يعمل على " + API_BASE + "\n\n" + err.message);
+    alert(err.message);
     console.error(err);
   } finally {
     btn.disabled = false;
@@ -113,7 +243,6 @@ document.getElementById("profile-form").addEventListener("submit", async (e) => 
 });
 
 function renderDashboard(profile, analysis, opportunities) {
-  document.getElementById("user-name-badge").textContent = profile.name || "مستخدم";
   document.getElementById("greet-name").textContent = profile.name || "بك";
   document.getElementById("greet-goal").textContent = analysis.goal_name_ar;
   document.getElementById("sum-goal").textContent = analysis.goal_name_ar;
