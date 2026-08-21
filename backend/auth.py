@@ -1,10 +1,3 @@
-"""
-auth.py
-تشفير كلمات المرور (bcrypt) وإصدار/التحقق من JWT للجلسات.
-
-⚠️ مهم للإنتاج: غيّري قيمة SECRET_KEY عبر متغير بيئة حقيقي (JWT_SECRET)
-ولا تتركيها بالقيمة الافتراضية عند النشر الفعلي.
-"""
 
 import os
 from datetime import datetime, timedelta
