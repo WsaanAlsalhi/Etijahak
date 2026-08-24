@@ -1,7 +1,0 @@
-// ============================================================
-// إعداد عنوان الـ Backend
-// محليًا: خليه كذا (يشتغل تلقائيًا مع uvicorn على جهازك)
-// بعد النشر: غيّري القيمة لعنوان الـ Backend الحقيقي على Railway/Render
-//   مثال: window.ETIJAHAK_API_BASE = "https://etijahak-backend.up.railway.app";
-// ============================================================
-window.ETIJAHAK_API_BASE = "https://etijahak-backend.onrender.com";
