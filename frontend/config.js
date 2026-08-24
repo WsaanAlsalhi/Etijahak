@@ -4,4 +4,4 @@
 // بعد النشر: غيّري القيمة لعنوان الـ Backend الحقيقي على Railway/Render
 //   مثال: window.ETIJAHAK_API_BASE = "https://etijahak-backend.up.railway.app";
 // ============================================================
-window.ETIJAHAK_API_BASE = "http://127.0.0.1:8000";
+window.ETIJAHAK_API_BASE = "https://etijahak-backend.onrender.com";
