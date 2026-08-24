@@ -1,0 +1,219 @@
+{
+  "ai_research_internship": {
+    "name_ar": "باحث في الذكاء الاصطناعي (Research Internship)",
+    "name_en": "AI Research Intern",
+    "required_skills": {"python": 0.9, "ai": 0.85, "machine_learning": 0.85, "computer_vision": 0.6, "research": 0.9, "technical_writing": 0.75, "statistics": 0.5},
+    "required_evidence": ["research_experience", "technical_writing", "research_evidence"],
+    "required_network": ["academic_network"]
+  },
+  "computer_vision_engineer": {
+    "name_ar": "مهندس رؤية حاسوبية (Computer Vision Engineer)",
+    "name_en": "Computer Vision Engineer",
+    "required_skills": {"python": 0.85, "computer_vision": 0.9, "machine_learning": 0.7, "opencv": 0.7, "deep_learning": 0.75, "software_engineering": 0.6},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "backend_developer": {
+    "name_ar": "مطور Backend",
+    "name_en": "Backend Developer",
+    "required_skills": {"python": 0.8, "software_engineering": 0.8, "databases": 0.75, "apis": 0.8, "system_design": 0.6},
+    "required_evidence": ["deployed_project", "github_projects"],
+    "required_network": ["industry_network"]
+  },
+  "frontend_developer": {
+    "name_ar": "مطور Frontend",
+    "name_en": "Frontend Developer",
+    "required_skills": {"javascript": 0.85, "html_css": 0.8, "react": 0.75, "software_engineering": 0.6, "ui_ux": 0.5},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "fullstack_developer": {
+    "name_ar": "مطور Full Stack",
+    "name_en": "Full Stack Developer",
+    "required_skills": {"javascript": 0.8, "python": 0.7, "react": 0.7, "databases": 0.7, "apis": 0.75, "software_engineering": 0.75},
+    "required_evidence": ["deployed_project", "github_projects"],
+    "required_network": ["industry_network"]
+  },
+  "mobile_developer": {
+    "name_ar": "مطور تطبيقات جوال",
+    "name_en": "Mobile App Developer",
+    "required_skills": {"mobile_development": 0.85, "javascript": 0.5, "ui_ux": 0.6, "software_engineering": 0.65, "apis": 0.6},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "devops_engineer": {
+    "name_ar": "مهندس DevOps",
+    "name_en": "DevOps Engineer",
+    "required_skills": {"cloud_computing": 0.85, "linux": 0.75, "ci_cd": 0.8, "docker": 0.75, "system_design": 0.7, "python": 0.5},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "cybersecurity_analyst": {
+    "name_ar": "محلل أمن سيبراني",
+    "name_en": "Cybersecurity Analyst",
+    "required_skills": {"cybersecurity": 0.9, "networking": 0.75, "linux": 0.6, "python": 0.5, "risk_analysis": 0.6},
+    "required_evidence": ["certifications", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "data_analyst": {
+    "name_ar": "محلل بيانات (Data Analyst)",
+    "name_en": "Data Analyst",
+    "required_skills": {"python": 0.6, "statistics": 0.75, "data_analysis": 0.85, "sql": 0.75, "data_visualization": 0.7},
+    "required_evidence": ["portfolio", "deployed_project"],
+    "required_network": ["industry_network"]
+  },
+  "data_engineer": {
+    "name_ar": "مهندس بيانات (Data Engineer)",
+    "name_en": "Data Engineer",
+    "required_skills": {"python": 0.8, "sql": 0.85, "databases": 0.8, "cloud_computing": 0.65, "system_design": 0.6},
+    "required_evidence": ["deployed_project", "github_projects"],
+    "required_network": ["industry_network"]
+  },
+  "data_science_fellowship": {
+    "name_ar": "زمالة علم البيانات (Data Science Fellowship)",
+    "name_en": "Data Science Fellowship",
+    "required_skills": {"python": 0.85, "statistics": 0.85, "machine_learning": 0.8, "data_analysis": 0.85, "research": 0.6, "technical_writing": 0.6},
+    "required_evidence": ["portfolio", "research_evidence"],
+    "required_network": ["academic_network"]
+  },
+  "ml_engineer": {
+    "name_ar": "مهندس تعلّم آلة (ML Engineer)",
+    "name_en": "ML Engineer",
+    "required_skills": {"python": 0.85, "machine_learning": 0.9, "deep_learning": 0.75, "software_engineering": 0.65, "cloud_computing": 0.5},
+    "required_evidence": ["deployed_project", "github_projects"],
+    "required_network": ["industry_network"]
+  },
+  "nlp_engineer": {
+    "name_ar": "مهندس معالجة لغة طبيعية (NLP Engineer)",
+    "name_en": "NLP Engineer",
+    "required_skills": {"python": 0.85, "nlp": 0.9, "machine_learning": 0.75, "deep_learning": 0.7, "research": 0.5},
+    "required_evidence": ["deployed_project", "research_evidence"],
+    "required_network": ["academic_network", "industry_network"]
+  },
+  "robotics_engineer": {
+    "name_ar": "مهندس روبوتات",
+    "name_en": "Robotics Engineer",
+    "required_skills": {"python": 0.6, "hardware": 0.8, "machine_learning": 0.5, "computer_vision": 0.5, "system_design": 0.6},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["academic_network", "industry_network"]
+  },
+  "game_developer": {
+    "name_ar": "مطور ألعاب",
+    "name_en": "Game Developer",
+    "required_skills": {"software_engineering": 0.75, "3d_design": 0.6, "ui_ux": 0.5, "python": 0.4},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "ux_ui_designer": {
+    "name_ar": "مصمم UX/UI",
+    "name_en": "UX/UI Designer",
+    "required_skills": {"ui_ux": 0.9, "design_tools": 0.8, "user_research": 0.7, "communication": 0.6},
+    "required_evidence": ["portfolio", "deployed_project"],
+    "required_network": ["industry_network"]
+  },
+  "product_designer": {
+    "name_ar": "مصمم منتجات (Product Designer)",
+    "name_en": "Product Designer",
+    "required_skills": {"ui_ux": 0.85, "product_thinking": 0.7, "design_tools": 0.75, "user_research": 0.6},
+    "required_evidence": ["portfolio", "deployed_project"],
+    "required_network": ["industry_network"]
+  },
+  "graphic_designer": {
+    "name_ar": "مصمم جرافيك",
+    "name_en": "Graphic Designer",
+    "required_skills": {"design_tools": 0.85, "visual_design": 0.85, "branding": 0.6},
+    "required_evidence": ["portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "product_manager": {
+    "name_ar": "مدير منتج (Product Manager)",
+    "name_en": "Product Manager",
+    "required_skills": {"product_thinking": 0.85, "communication": 0.8, "market_research": 0.7, "data_analysis": 0.55, "leadership": 0.6},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network", "mentor_network"]
+  },
+  "project_manager": {
+    "name_ar": "مدير مشاريع (Project Manager)",
+    "name_en": "Project Manager",
+    "required_skills": {"project_management": 0.85, "communication": 0.75, "leadership": 0.65, "risk_analysis": 0.5},
+    "required_evidence": ["certifications", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "business_analyst": {
+    "name_ar": "محلل أعمال (Business Analyst)",
+    "name_en": "Business Analyst",
+    "required_skills": {"data_analysis": 0.7, "business_strategy": 0.75, "communication": 0.7, "sql": 0.5},
+    "required_evidence": ["portfolio", "deployed_project"],
+    "required_network": ["industry_network"]
+  },
+  "digital_marketing": {
+    "name_ar": "متخصص تسويق رقمي",
+    "name_en": "Digital Marketing Specialist",
+    "required_skills": {"digital_marketing": 0.85, "content_creation": 0.7, "data_analysis": 0.5, "communication": 0.7, "seo": 0.6},
+    "required_evidence": ["portfolio", "deployed_project"],
+    "required_network": ["industry_network"]
+  },
+  "content_creator": {
+    "name_ar": "صانع محتوى",
+    "name_en": "Content Creator",
+    "required_skills": {"content_creation": 0.85, "communication": 0.75, "visual_design": 0.5, "social_media": 0.7},
+    "required_evidence": ["portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "startup_product_track": {
+    "name_ar": "مسار ريادة أعمال / منتجات تقنية",
+    "name_en": "Startup / Tech Product Track",
+    "required_skills": {"product_thinking": 0.8, "software_engineering": 0.5, "communication": 0.75, "market_research": 0.7, "leadership": 0.6},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["mentor_network", "industry_network"]
+  },
+  "finance_analyst": {
+    "name_ar": "محلل مالي (Finance Analyst)",
+    "name_en": "Finance Analyst",
+    "required_skills": {"financial_analysis": 0.85, "data_analysis": 0.65, "statistics": 0.5, "communication": 0.6},
+    "required_evidence": ["certifications", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "hr_specialist": {
+    "name_ar": "أخصائي موارد بشرية",
+    "name_en": "HR Specialist",
+    "required_skills": {"hr_management": 0.8, "communication": 0.8, "leadership": 0.5, "recruitment": 0.65},
+    "required_evidence": ["certifications", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "teacher_educator": {
+    "name_ar": "معلّم / مدرّب تعليمي",
+    "name_en": "Teacher / Educator",
+    "required_skills": {"teaching": 0.85, "communication": 0.85, "curriculum_design": 0.6, "subject_expertise": 0.7},
+    "required_evidence": ["certifications", "portfolio"],
+    "required_network": ["academic_network"]
+  },
+  "medical_research": {
+    "name_ar": "مساعد بحث طبي (Medical Research Assistant)",
+    "name_en": "Medical Research Assistant",
+    "required_skills": {"research": 0.85, "biology_medicine": 0.8, "statistics": 0.6, "technical_writing": 0.65},
+    "required_evidence": ["research_experience", "research_evidence"],
+    "required_network": ["academic_network"]
+  },
+  "mechanical_engineering": {
+    "name_ar": "هندسة ميكانيكية (تدريب/وظيفة مبتدئ)",
+    "name_en": "Mechanical Engineering (Entry-level)",
+    "required_skills": {"cad_design": 0.8, "mechanical_engineering": 0.85, "problem_solving": 0.6, "math_physics": 0.6},
+    "required_evidence": ["deployed_project", "portfolio"],
+    "required_network": ["industry_network"]
+  },
+  "civil_engineering": {
+    "name_ar": "هندسة مدنية (تدريب/وظيفة مبتدئ)",
+    "name_en": "Civil Engineering (Entry-level)",
+    "required_skills": {"civil_engineering": 0.85, "cad_design": 0.7, "project_management": 0.5, "math_physics": 0.6},
+    "required_evidence": ["deployed_project", "certifications"],
+    "required_network": ["industry_network"]
+  },
+  "supply_chain": {
+    "name_ar": "سلاسل الإمداد واللوجستيات",
+    "name_en": "Supply Chain & Logistics",
+    "required_skills": {"supply_chain": 0.85, "data_analysis": 0.55, "project_management": 0.6, "communication": 0.6},
+    "required_evidence": ["portfolio", "certifications"],
+    "required_network": ["industry_network"]
+  }
+}
