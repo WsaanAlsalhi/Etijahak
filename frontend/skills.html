@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المهارات | اتجاهك</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="layout-root"></div>
+
+<script src="i18n.js"></script>
+<script src="theme.js"></script>
+<script src="config.js"></script>
+<script src="common.js"></script>
+<script>
+(async function init() {
+  const user = await requireAuth();
+  if (!user) return;
+  renderShell("skills", user);
+  const main = document.getElementById("page-main");
+  const isEn = () => (typeof CURRENT_LANG !== "undefined" && CURRENT_LANG === "en");
+
+  try {
+    const res = await fetch(`${API_BASE}/analyze/last`, { headers: authHeaders() });
+    if (res.status === 404) {
+      main.innerHTML = `<div class="card" style="text-align:center; padding:40px;"><p class="muted">${isEn() ? "No analysis yet." : "لا يوجد تحليل بعد."}</p><a href="analyze.html" class="btn-primary">${isEn() ? "Start Analysis" : "ابدئي التحليل"}</a></div>`;
+      return;
+    }
+    if (!res.ok) throw new Error("failed");
+    const analysis = await res.json();
+
+    const capsHtml = analysis.capabilities.length === 0
+      ? `<div class="empty-hint">${isEn() ? "No skills yet." : "لا توجد مهارات بعد."}</div>`
+      : analysis.capabilities.map(c => `
+        <div class="bar-row">
+          <div class="bar-top"><span>${prettify(c.skill)}</span><span>${c.score}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${c.score}%"></div></div>
+          ${c.evidence.length ? `<div class="bar-evidence">✓ ${c.evidence.join(" · ")}</div>` : ""}
+        </div>`).join("");
+
+    const gapsHtml = analysis.gaps.length === 0
+      ? `<div class="empty-hint">🎉 ${isEn() ? "No major gaps!" : "لا توجد فجوات كبيرة!"}</div>`
+      : analysis.gaps.map(g => `
+        <div class="gap-chip">
+          <span>${bi(g, "label_ar", "label_en")} <span class="muted">(${g.current_score}% / ${g.required_score}%)</span></span>
+          <span class="gap-type ${g.gap_type}">${g.gap_type === "network" ? (isEn() ? "Network" : "شبكة") : (isEn() ? "Skill" : "قدرة")}</span>
+        </div>`).join("");
+
+    main.innerHTML = `
+      <h2 style="color:var(--navy); margin-bottom:16px;">📊 ${isEn() ? "Your Skills & Gaps" : "مهاراتك وفجواتك"}</h2>
+      <div class="grid-dashboard">
+        <div class="card"><h3 class="section-title">${isEn() ? "Skill Levels" : "مستوى المهارات"}</h3><div class="bars-list">${capsHtml}</div></div>
+        <div class="card"><h3 class="section-title">${isEn() ? "What's Missing" : "ما ينقصك"}</h3><div class="tags-list">${gapsHtml}</div></div>
+      </div>`;
+  } catch (err) {
+    main.innerHTML = `<div class="empty-hint">${isEn() ? "Error loading data." : "خطأ بتحميل البيانات."}</div>`;
+  }
+})();
+</script>
+</body>
+</html>
