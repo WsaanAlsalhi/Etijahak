@@ -2,7 +2,7 @@
 // common.js — نظام مشترك لكل صفحات الداشبورد المنفصلة
 // (المصادقة، الشريط الجانبي، رأس الصفحة، تسجيل الخروج...)
 // ============================================================
-const API_BASE = window.ETIJAHAK_API_BASE || "http://127.0.0.1:8000";
+const API_BASE = window.ETIJAHAK_API_BASE = "https://etijahak-backend.onrender.com";
 const TOKEN_KEY = "etijahak_token";
 
 function getToken() { return localStorage.getItem(TOKEN_KEY); }
